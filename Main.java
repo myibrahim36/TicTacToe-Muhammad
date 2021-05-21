@@ -144,14 +144,14 @@ class Main {
     }
     //System.out.printf("I count %s moves", counter);
 
-    if (checkWinner(board)){
+    if (!checkWinner(board)){
       System.out.println("GAME OVER!!!!");
       return true;
     }
-    else if ((counter <= 2) && !checkWinner(board)){
-      System.out.println("GAME OVER!!!!");
-      return true;
-    } 
+    // else if ((counter <= 2) && checkWinner(board)){
+    //   System.out.println("GAME OVER!!!!");
+    //   return true;
+    // } 
     else if (counter == 0){
       System.out.println("GAME OVER!!!!");
       return true;
