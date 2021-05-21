@@ -24,13 +24,13 @@ class Main {
       int move = input.nextInt();
       if ((countTurn == 0 || countTurn % 2 == 0) && playersMove(board, move, "o")){
 
-        displayBoard(board); positionBoard();
+        displayBoard(board); //positionBoard();
         if (checkGameOver(board)){break;}
         countTurn++;
       }
       else if (countTurn % 2 != 0 && playersMove(board, move, "x")){
        
-        displayBoard(board); positionBoard();
+        displayBoard(board); //positionBoard();
         if (checkGameOver(board)){break;} 
         countTurn++;
       } 
@@ -97,27 +97,30 @@ class Main {
 
   /** This method checks the board for plays that win.*/
   public static boolean checkWinner(String[] board){
-     
-    boolean checkOwins = (board[0] == "o" && board[1] == "o" && board[2] == "o" ) || (board[3] == "o" && board[4] == "o" && board[5] == "o" ) || (board[6] == "o" && board[7] == "o" && board[8] == "o" );
 
-    boolean checkX = (board[0] == "x" && board[1] == "x" && board[2] == "x" ) || (board[3] == "x" && board[4] == "x" && board[5] == "x" ) || (board[6] == "x" && board[7] == "x" && board[8] == "x" );
+  int[][] winningNumbers = {{0,1,2},{3,4,5},{6,7,8},
+                    {0,3,6},{1,4,7},{2,5,8},
+                    {0,4,8},{2,4,6}};
+    
+    boolean win = false;
 
-    boolean checkOwinsV = (board[0] == "o" && board[3] == "o" && board[6] == "o" ) || (board[1] == "o" && board[4] == "o" && board[7] == "o" ) || (board[2] == "o" && board[5] == "o" && board[8] == "o" );
+    for(int i = 0; i < winningNumbers.length; i++){
+      int[] winningNumber = winningNumbers[i];
+      int firstIndex = winningNumber[0];
+      int secondIndex = winningNumber[1];
+      int thirdIndex = winningNumber[2];
 
-    boolean checkXV = (board[0] == "x" && board[3] == "x" && board[6] == "x" ) || (board[1] == "x" && board[4] == "x" && board[7] == "x" ) || (board[2] == "x" && board[5] == "x" && board[8] == "x" );
-
-    boolean checkOwinsCross = (board[0] == "o" && board[4] == "o" && board[8] == "o" ) || (board[2] == "o" && board[4] == "o" && board[6] == "o" );
-
-    boolean checkXCross = (board[0] == "x" && board[4] == "x" && board[8] == "x" ) || (board[2] == "x" && board[4] == "x" && board[6] == "x");
-
-    if (checkOwins || checkOwinsV || checkOwinsCross){
-      System.out.println("You won O!!");
-      return true;
-    } else if(checkX || checkXV || checkXCross) {
-      System.out.println("You won X!!");
-      return true;
-    } else{return false;}
-  
+      if (board[firstIndex] == "o" && board[secondIndex] == "o" && board[thirdIndex] == "o"){ 
+        System.out.println("You won O!!");
+        win = true;        
+      }
+      else if (board[firstIndex] == "x" && board[secondIndex] == "x" && board[thirdIndex] == "x"){ 
+        System.out.println("You won x!!");
+        win = true;        
+      }
+      else{win = false;}
+    }
+    return true;
   }
 
   /** This method returns the copy of a slice of the list*/
