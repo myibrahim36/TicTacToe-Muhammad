@@ -19,10 +19,11 @@ class Main {
 
     // TODO correct the checkGameOver method to actually evaluate and end game correctly
     // TODO make while loop exit after all parts of board are completed
-    while(countTurn<board.length){
+    while(!checkGameOver(board)){
       System.out.print("\nWhere would you like to make your move. Enter the number: ");
       int move = input.nextInt();
       if ((countTurn == 0 || countTurn % 2 == 0) && playersMove(board, move, "o")){
+
         displayBoard(board); positionBoard();
         if (checkGameOver(board)){break;}
         countTurn++;
@@ -30,13 +31,14 @@ class Main {
       else if (countTurn % 2 != 0 && playersMove(board, move, "x")){
        
         displayBoard(board); positionBoard();
-        if (checkWinner(board) || checkGameOver(board)){break;} 
+        if (checkGameOver(board)){break;} 
         countTurn++;
       } 
     }
     
   }
   
+  /** This method houses our position board. Lets players know how to navigate on the board*/
   public static void positionBoard(){
     System.out.println(" 0 | 1 | 2 ");
     System.out.println("___________");
@@ -54,6 +56,7 @@ class Main {
 
   }
 
+  /** This method houses our game board*/
   public static void displayBoard(String[] boardValue){
     System.out.println(" "+boardValue[0]+" | "+boardValue[1]+ " | "+boardValue[2]);
     System.out.println("___________");
@@ -63,11 +66,15 @@ class Main {
     System.out.println("+******************************+");
   }
 
+  /** This method lets the player know if a move they made was right, and alerts them if it wasn't*/
   public static boolean playersMove(String[] board, int pMove, String play){
 
-       if (validMove(board, pMove)){
+       if (validMove(board, pMove) && !checkGameOver(board)){
             board[pMove] = play;
             return true;
+       }
+       else if (checkGameOver(board)){
+         return true;
        }
        else{
         System.out.println("Invalid Move!");
@@ -77,6 +84,7 @@ class Main {
       //return board[pMove];
   }   
 
+  /** This method validates a move  and returns true if that move is valid*/
   public static boolean validMove(String[] board, int pMove){
     if ((board[pMove] == " ") && (!board[pMove].isEmpty())){
             return true;
@@ -87,20 +95,9 @@ class Main {
 
   }
 
+  /** This method checks the board for plays that win.*/
   public static boolean checkWinner(String[] board){
-    // String[] newArray = Arrays.copyOfRange(oldArray, startIndex, endIndex);
-    //Arrays.copyOfRangeboard(board, 0, 2);
-
-    // String[] play = Arrays.copyOfRangeboard(board, 0, 2);
-   
-    // if (Arrays.copyOfRange(board, 0, 3) == "x" ||
-    // Arrays.copyOfRange(board, 0, 3) == "o" ){
-    //   System.out.println("You won!!1");
-    //   return "gameover";
-    // }
-
-
-  
+     
     boolean checkOwins = (board[0] == "o" && board[1] == "o" && board[2] == "o" ) || (board[3] == "o" && board[4] == "o" && board[5] == "o" ) || (board[6] == "o" && board[7] == "o" && board[8] == "o" );
 
     boolean checkX = (board[0] == "x" && board[1] == "x" && board[2] == "x" ) || (board[3] == "x" && board[4] == "x" && board[5] == "x" ) || (board[6] == "x" && board[7] == "x" && board[8] == "x" );
@@ -112,11 +109,6 @@ class Main {
     boolean checkOwinsCross = (board[0] == "o" && board[4] == "o" && board[8] == "o" ) || (board[2] == "o" && board[4] == "o" && board[6] == "o" );
 
     boolean checkXCross = (board[0] == "x" && board[4] == "x" && board[8] == "x" ) || (board[2] == "x" && board[4] == "x" && board[6] == "x");
-
-    // if (Arrays.copyOfRange(board, 0, 3) == "x"){
-    //   System.out.println("You won!!1");}
-
-    //findSlice(board,0,3);
 
     if (checkOwins || checkOwinsV || checkOwinsCross){
       System.out.println("You won O!!");
@@ -143,15 +135,21 @@ class Main {
 
     int counter= 0;
     for (String i: board){
-      if (i == " ");
-      counter++;
+      if (i == " "){counter++;}
+      //System.out.println(i);
+      
     }
+    //System.out.printf("I count %s moves", counter);
 
     if (checkWinner(board)){
       System.out.println("GAME OVER!!!!");
       return true;
     }
-    else if ((counter <= 2) && !Main.checkWinner(board)){
+    else if ((counter <= 2) && !checkWinner(board)){
+      System.out.println("GAME OVER!!!!");
+      return true;
+    } 
+    else if (counter == 0){
       System.out.println("GAME OVER!!!!");
       return true;
     }
