@@ -13,7 +13,6 @@ class Main {
     System.out.println("\n\nLet's play!!\n");
     emptyBoard(board);
 
-    //Scanner input = new Scanner(System.in);
 
     int countTurn = 0;
 
@@ -79,8 +78,6 @@ class Main {
         System.out.println("Invalid Move!");
         return false;
        }
-
-      //return board[pMove];
   }   
 
   /** This method validates a move  and returns true if that move is valid*/
@@ -125,24 +122,16 @@ class Main {
   /** This methods checks to see if the game is over
   or if there are no moves left*/
   public static boolean checkGameOver(String[] board){
-    //if (the number of empty string elements in array is <= 2) game over == true;
-
     int counter= 0;
     for (String i: board){
       if (i == " "){counter++;}
-      //System.out.println(i);
       
     }
-    //System.out.printf("I count %s moves", counter);
 
     if (!checkWinner(board)){
       System.out.println("GAME OVER!!!!");
       return true;
-    }
-    // else if ((counter <= 2) && checkWinner(board)){
-    //   System.out.println("GAME OVER!!!!");
-    //   return true;
-    // } 
+    } 
     else if (counter == 0){
       System.out.println("GAME OVER!!!!");
       return true;
