@@ -8,19 +8,18 @@ class Main {
   public static void main(String[] args) {
     System.out.println("Welcome to tic-tac-toe\n\n");
 
-    String[] board = {" ", "x", " ", "x", "o", "o", " ","o", "x"};
+    String[] board = {" ", " ", " ", " ", " ", " ", " "," ", " "};
     positionBoard();
     System.out.println("\n\nLet's play!!\n");
     emptyBoard(board);
 
-    Scanner input = new Scanner(System.in);
+    //Scanner input = new Scanner(System.in);
 
     int countTurn = 0;
 
-    // TODO correct the checkGameOver method to actually evaluate and end game correctly
-    // TODO make while loop exit after all parts of board are completed
     while(!checkGameOver(board)){
       System.out.print("\nWhere would you like to make your move. Enter the number: ");
+      Scanner input = new Scanner(System.in);
       int move = input.nextInt();
       if ((countTurn == 0 || countTurn % 2 == 0) && playersMove(board, move, "o")){
 
