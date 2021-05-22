@@ -122,14 +122,6 @@ class Main {
     return true;
   }
 
-  /** This method returns the copy of a slice of the list*/
-  public static int[] findSlice(int[] board, int startIndex, int endIndex){
-
-    int[] slice = IntStream.range(startIndex, endIndex).map(i -> board[i]).toArray();
-
-    return slice;
-  }
-
   /** This methods checks to see if the game is over
   or if there are no moves left*/
   public static boolean checkGameOver(String[] board){
