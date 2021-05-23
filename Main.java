@@ -8,12 +8,12 @@ class Main {
   public static void main(String[] args) {
     System.out.println("Welcome to tic-tac-toe\n\n");
 
-    String[] board = {"o", "o", " ", " ", " ", " ", " "," ", " "};
+    String[] board = {" ", " ", " ", " ", " ", " ", " "," ", " "};
     positionBoard();
     System.out.println("\n\nLet's play!!\n");
     emptyBoard(board);
 
-
+    //Scanner input = new Scanner(System.in);
 
     int countTurn = 0;
 
@@ -23,7 +23,7 @@ class Main {
       int move = input.nextInt();
       if ((countTurn == 0 || countTurn % 2 == 0) && playersMove(board, move, "o")){
 
-        displayBoard(board); positionBoard();
+        displayBoard(board); //positionBoard();
         if (checkGameOver(board)){break;}
         countTurn++;
       }
@@ -79,6 +79,8 @@ class Main {
         System.out.println("Invalid Move!");
         return false;
        }
+
+      //return board[pMove];
   }   
 
   /** This method validates a move  and returns true if that move is valid*/
@@ -109,15 +111,21 @@ class Main {
 
       if (board[firstIndex] == "o" && board[secondIndex] == "o" && board[thirdIndex] == "o"){ 
         System.out.println("You won O!!");
-        System.out.println("test here22");
-        win = true;        
+        win = true; 
+        return win;
+        //return true;       
       }
       else if (board[firstIndex] == "x" && board[secondIndex] == "x" && board[thirdIndex] == "x"){ 
         System.out.println("You won x!!");
-        System.out.println("test here");
-        win = true;        
+        win = true;  
+        return win;
+        //return true;     
       }
-      else{win = false;}
+      // else{
+      //   win = false; 
+      //   return win;
+      //   //return false;
+      //   }
     }
     return win;
   }
@@ -125,16 +133,24 @@ class Main {
   /** This methods checks to see if the game is over
   or if there are no moves left*/
   public static boolean checkGameOver(String[] board){
+    //if (the number of empty string elements in array is <= 2) game over == true;
+
     int counter= 0;
     for (String i: board){
       if (i == " "){counter++;}
+      //System.out.println(i);
       
     }
+    //System.out.printf("I count %s moves", counter);
 
     if (checkWinner(board)){
-      System.out.println("GAME OVER!!!!");
+      System.out.println("GAME OVER!");
       return true;
-    } 
+    }
+    // else if ((counter <= 2) && checkWinner(board)){
+    //   System.out.println("GAME OVER!!!!");
+    //   return true;
+    // } 
     else if (counter == 0){
       System.out.println("GAME OVER!!!!");
       return true;
