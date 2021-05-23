@@ -11,10 +11,45 @@ class Main {
     String[] board = {" ", " ", " ", " ", " ", " ", " "," ", " "};
     positionBoard();
     System.out.println("\n\nLet's play!!\n");
-    emptyBoard(board);
+    
+    displayBoard(board);
 
-    //Scanner input = new Scanner(System.in);
+    gamePlay(board);
 
+    
+  }
+  
+  /** This method houses our position board. Lets players know how to navigate on the board*/
+  public static void positionBoard(){
+    System.out.println(" 0 | 1 | 2 ");
+    System.out.println("___________");
+    System.out.println(" 3 | 4 | 5 ");
+    System.out.println("___________");
+    System.out.println(" 6 | 7 | 8 ");
+  }
+
+   /** This method houses our empty board. Lets players know how to navigate on the board*/
+  public static void emptyBoard(String[] board){
+    System.out.println("  "+board[0]+"| "+board[1]+ " | "+board[2]);
+    System.out.println("___________");
+    System.out.println(" "+board[3]+" | "+board[4]+ " | "+board[5]);
+    System.out.println("___________");
+    System.out.println(" "+board[6]+" | "+board[7]+ " | "+board[8]);
+
+  }
+
+  /** This method houses our game board*/
+  public static void displayBoard(String[] boardValue){
+    System.out.println(" "+boardValue[0]+" | "+boardValue[1]+ " | "+boardValue[2]);
+    System.out.println("___________");
+    System.out.println(" "+boardValue[3]+" | "+boardValue[4]+ " | "+boardValue[5]);
+    System.out.println("___________");
+    System.out.println(" "+boardValue[6]+" | "+boardValue[7]+ " | "+boardValue[8]);
+    System.out.println("+******************************+");
+  }
+
+   /** This method houses our actual game play*/
+  public static void gamePlay(String[] board){
     int countTurn = 0;
 
     while(!checkGameOver(board)){
@@ -37,33 +72,6 @@ class Main {
     
   }
   
-  /** This method houses our position board. Lets players know how to navigate on the board*/
-  public static void positionBoard(){
-    System.out.println(" 0 | 1 | 2 ");
-    System.out.println("___________");
-    System.out.println(" 3 | 4 | 5 ");
-    System.out.println("___________");
-    System.out.println(" 6 | 7 | 8 ");
-  }
-
-  public static void emptyBoard(String[] board){
-    System.out.println("  "+board[0]+"| "+board[1]+ " | "+board[2]);
-    System.out.println("___________");
-    System.out.println(" "+board[3]+" | "+board[4]+ " | "+board[5]);
-    System.out.println("___________");
-    System.out.println(" "+board[6]+" | "+board[7]+ " | "+board[8]);
-
-  }
-
-  /** This method houses our game board*/
-  public static void displayBoard(String[] boardValue){
-    System.out.println(" "+boardValue[0]+" | "+boardValue[1]+ " | "+boardValue[2]);
-    System.out.println("___________");
-    System.out.println(" "+boardValue[3]+" | "+boardValue[4]+ " | "+boardValue[5]);
-    System.out.println("___________");
-    System.out.println(" "+boardValue[6]+" | "+boardValue[7]+ " | "+boardValue[8]);
-    System.out.println("+******************************+");
-  }
 
   /** This method lets the player know if a move they made was right, and alerts them if it wasn't*/
   public static boolean playersMove(String[] board, int pMove, String play){
