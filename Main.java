@@ -8,10 +8,11 @@ class Main {
   public static void main(String[] args) {
     System.out.println("Welcome to tic-tac-toe\n\n");
 
-    String[] board = {" ", " ", " ", " ", " ", " ", " "," ", " "};
+    String[] board = {"o", "o", " ", " ", " ", " ", " "," ", " "};
     positionBoard();
     System.out.println("\n\nLet's play!!\n");
     emptyBoard(board);
+
 
 
     int countTurn = 0;
@@ -22,7 +23,7 @@ class Main {
       int move = input.nextInt();
       if ((countTurn == 0 || countTurn % 2 == 0) && playersMove(board, move, "o")){
 
-        displayBoard(board); //positionBoard();
+        displayBoard(board); positionBoard();
         if (checkGameOver(board)){break;}
         countTurn++;
       }
@@ -108,15 +109,17 @@ class Main {
 
       if (board[firstIndex] == "o" && board[secondIndex] == "o" && board[thirdIndex] == "o"){ 
         System.out.println("You won O!!");
+        System.out.println("test here22");
         win = true;        
       }
       else if (board[firstIndex] == "x" && board[secondIndex] == "x" && board[thirdIndex] == "x"){ 
         System.out.println("You won x!!");
+        System.out.println("test here");
         win = true;        
       }
       else{win = false;}
     }
-    return true;
+    return win;
   }
 
   /** This methods checks to see if the game is over
@@ -128,7 +131,7 @@ class Main {
       
     }
 
-    if (!checkWinner(board)){
+    if (checkWinner(board)){
       System.out.println("GAME OVER!!!!");
       return true;
     } 
